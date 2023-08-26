@@ -19,7 +19,7 @@ export default class News extends Component {
     }
 
     async componentDidMount() {
-      let url = `https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=a2ee3479e099421092f363ddbd3b6b80&page=1&pageSize=${this.props.pageSize}`;
+      let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=a2ee3479e099421092f363ddbd3b6b80&page=1&pageSize=${this.props.pageSize}`;
       this.setState({loading: true})
 
       try{
@@ -40,7 +40,7 @@ export default class News extends Component {
     
     handlePrevClick=async()=> {
        this.setState({loading : true});
-        let url = `https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=a2ee3479e099421092f363ddbd3b6b80&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`;
+        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=a2ee3479e099421092f363ddbd3b6b80&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`;
       
         let data = await fetch(url);
         let parsedData = await data.json();
@@ -63,7 +63,7 @@ export default class News extends Component {
 
       } else {
 
-        let url = `https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=a2ee3479e099421092f363ddbd3b6b80&page=${this.state.page +1}&pageSize=${this.props.pageSize}`;
+        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=a2ee3479e099421092f363ddbd3b6b80&page=${this.state.page +1}&pageSize=${this.props.pageSize}`;
         this.setState({loading : true});
         let data = await fetch(url);
         let parsedData = await data.json();
@@ -81,8 +81,8 @@ export default class News extends Component {
       
   render() {
     return (
-      <div className='container my-3'>
-        <h1 className='text-center'>NewsMonkey - Top Headlines</h1>
+      <div className='container my-3 '>
+        <h1 className='text-center'>NewsHeadline - Top Headlines</h1>
         {this.state.loading && <Spinner/>}
         <div className="row my-4">
         {!this.state.loading && this.state.articles.map((element)=>{

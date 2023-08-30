@@ -9,7 +9,7 @@ export default class NewsItem extends Component {
         <div className="card">
           <img src={imageUrl} className="card-img-top" alt="..."/>
           <div className="card-body">
-            <h5 className="card-title">{title}....
+            <h5 className="card-title">{title}
             <span class="position-absolute top-0 translate-middle badge rounded-pill bg-secondary" style={{left:'90%', zIndex:1, fontSize: '0.61em'}}>
                 {!source?"Unknown": source}
                 <span class="visually-hidden">unread messages</span>

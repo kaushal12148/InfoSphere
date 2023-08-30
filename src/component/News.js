@@ -4,10 +4,12 @@ import Spinner from './Spinner';
 
 export default class News extends Component {
 
- 
+   capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+   }
 
-    constructor(){
-      super();
+    constructor(props){
+      super(props);
 
       this.state = {
         articles :  [],
@@ -15,6 +17,7 @@ export default class News extends Component {
         page : 1,
         totalArticles: ("")
       }
+      document.title = `NewsBurst - ${this.capitalizeFirstLetter(this.props.category)}`;
     }
 
     async updateNews() {
@@ -109,7 +112,7 @@ export default class News extends Component {
         <div className="row my-4 container">
         {!this.state.loading && this.state.articles.map((element)=>{
           return <div className="col-md-4 my-4 container" key={element.url}>
-           <NewsItem  title={element.title?element.title.slice(0,45):""} description={element.description?element.description.slice(0,88):""} 
+           <NewsItem  title={element.title} description={element.description?element.description.slice(0,88):""} 
            imageUrl={!element.urlToImage?"https://ichef.bbci.co.uk/news/1024/branded_news/1120D/production/_130675107_scoutsafp.jpg":element.urlToImage} newsUrl= {element.url} author={element.author} 
            date={element.publishedAt} source={element.source.name}/>
            </div>
